@@ -1,10 +1,11 @@
 import socket
 import select
+from sys import argv
+
 
 def init(*argv):
-    for arg in argv:
-        print(arg)
-        
+
+
     HEADER_LENGTH = 10
 
     IP = "20.0.0.5"
@@ -92,17 +93,16 @@ def init(*argv):
                 if user is False:
                     continue
                 host, port = client_socket.getpeername()
-                print(f'client address {host}')
-                hostcheck = '20.0.0.66'
-                if host != hostcheck:
-                    # Add accepted socket to select.select() list
-                    sockets_list.append(client_socket)
+                for arg in argv:
+                    print(arg)
+                    if host != arg:
+                        # Add accepted socket to select.select() list
+                        sockets_list.append(client_socket)
 
-                    # Also save username and username header
-                    clients[client_socket] = user
-                    print('Accepted new connection from {}:{}, username: {}'.format(*client_address,
-                                                                                    user['data'].decode('utf-8')))
-
+                        # Also save username and username header
+                        clients[client_socket] = user
+                        print('Accepted new connection from {}:{}, username: {}'.format(*client_address,
+                                                                                        user['data'].decode('utf-8')))
             # Else existing socket is sending a message
             else:
 
@@ -142,3 +142,5 @@ def init(*argv):
 
             # Remove from our list of users
             del clients[notified_socket]
+if __name__ == "__main__":
+    init(*argv)

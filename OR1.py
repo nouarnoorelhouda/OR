@@ -3,7 +3,7 @@ import select
 
 HEADER_LENGTH = 10
 
-IP = "127.0.0.1"
+IP = "20.0.0.5"
 PORT = 1234
 
 # Create a socket
@@ -88,17 +88,14 @@ while True:
             # If False - client disconnected before he sent his name
             if user is False:
                 continue
-            client_name = client_socket.gethostname()
-            client_ip = socket.gethostbyname(client_name)
-            print("Hostname :  ", client_name)
-            print("IP : ", client_ip)
+            if client_address != '20.0.0.66'
             # Add accepted socket to select.select() list
-            sockets_list.append(client_socket)
+                sockets_list.append(client_socket)
 
             # Also save username and username header
-            clients[client_socket] = user
+                clients[client_socket] = user
 
-            print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
+                print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
 
         # Else existing socket is sending a message
         else:

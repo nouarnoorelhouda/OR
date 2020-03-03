@@ -1,8 +1,6 @@
 import socket
 import select
 
-import args
-
 HEADER_LENGTH = 10
 
 IP = "127.0.0.1"
@@ -82,7 +80,6 @@ while True:
             # Accept new connection
             # That gives us new socket - client socket, connected to this given client only, it's unique for that client
             # The other returned object is ip/port set
-
             client_socket, client_address = server_socket.accept()
 
             # Client should send his name right away, receive it
@@ -91,14 +88,12 @@ while True:
             # If False - client disconnected before he sent his name
             if user is False:
                 continue
+
             # Add accepted socket to select.select() list
-            for item in args:
-                if item == client_address:
-                    sockets_list.append(client_socket)
-                    clients[client_socket] = user
+            sockets_list.append(client_socket)
 
             # Also save username and username header
-
+            clients[client_socket] = user
 
             print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
 
@@ -143,3 +138,6 @@ while True:
 
         # Remove from our list of users
         del clients[notified_socket]
+
+if __name__ == "__main__":
+    main(*args)

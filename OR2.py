@@ -4,6 +4,8 @@ from sys import argv
 
 
 def init(*argv):
+    for arg in argv:
+        print ('the arg is {arg}')
     HEADER_LENGTH = 10
     IP = "20.0.0.5"
     PORT = 1234

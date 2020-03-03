@@ -39,7 +39,17 @@ def init(*argv):
                 host, port = client_socket.getpeername()
                 for arg in argv:
                     print(arg)
-                print(f'client address {host}')
+                    if host != arg:
+                        sockets_list.append(client_socket)
+                        clients[client_socket] = user
+                        print('Accepted new connection from {}:{}, username: {}'.format(*client_address,
+                                                                                        user['data'].decode('utf-8')))
+                #print(f'client address {host}')
+                #hostcheck = '20.0.0.66'
+                #if host != hostcheck:
+                #   sockets_list.append(client_socket)
+                #    clients[client_socket] = user
+                #    print('Accepted new connection from {}:{}, username: {}'.format(*client_address,user['data'].decode('utf-8')))
                 hostcheck = '20.0.0.66'
                 if host != hostcheck:
                     sockets_list.append(client_socket)

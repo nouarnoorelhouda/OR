@@ -90,7 +90,7 @@ while True:
                 continue
 
             # Add accepted socket to select.select() list
-            if client_address != '20.0.0.66'
+            if client_address != '20.0.0.66':
                 sockets_list.append(client_socket)
                 clients[client_socket] = user
 

@@ -88,13 +88,15 @@ while True:
             # If False - client disconnected before he sent his name
             if user is False:
                 continue
-            if client_address != '20.0.0.66'
+            host, port = client_socket.getpeername()
+            print(f'client address {host}')
+            hostcheck = '20.0.0.66' 
+            if host != hostcheck:
             # Add accepted socket to select.select() list
                 sockets_list.append(client_socket)
 
             # Also save username and username header
                 clients[client_socket] = user
-
                 print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
 
         # Else existing socket is sending a message

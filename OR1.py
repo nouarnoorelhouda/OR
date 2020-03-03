@@ -1,7 +1,5 @@
 import socket
 import select
-
-import args
 import sys
 
 
